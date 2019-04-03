@@ -1,0 +1,84 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+class queueUsingStack
+{
+    Stack<Integer> s ;
+    Stack<Integer> tmp ;
+    int index;
+    public queueUsingStack()
+    {
+        s = new Stack<Integer>();
+        tmp = new Stack<Integer>();
+        index=0;
+    }
+    public void push1(int data)
+    {        
+        //if (s.size() == 0)
+            s.push(data);
+        // else
+        // {          
+        //     int l = s.size();
+        //     for (int i = 0; i < l; i++)
+        //         tmp.push(s.pop());                              
+        //     s.push(data);                       
+        //     for (int i = 0; i < l; i++)
+        //         s.push(tmp.pop());                   
+        // }
+        // //System.out.println(s.peek());
+
+    }    
+    public void pop1()
+    {            
+       int l = s.size();
+         for (int i = 0; i < l-1; i++)
+            tmp.push(s.pop());                              
+        s.pop();                       
+        for (int i = 0; i < l-1; i++)
+            s.push(tmp.pop()); 
+        //s.removeElementAt(index);
+
+    }    
+    public int peek1()
+    {            
+        return s.firstElement();
+    }   
+
+}     
+
+public class Solution {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        queueUsingStack q = new queueUsingStack();
+
+
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int i,m;
+        while(n!=0)
+        {
+           m= sc.nextInt();
+           //System.out.println(m);
+           
+            switch(m)
+            {
+                case 1:i=sc.nextInt();
+                      // System.out.println(i);
+                       q.push1(i);
+                       break;
+                case 2:q.pop1();
+                       break;
+                case 3:m=q.peek1();
+                        System.out.println(m);
+                        break;
+            }
+            n--;
+        }
+    }
+}
+
+
